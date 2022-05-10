@@ -13,6 +13,9 @@ i18next.init({
           res: "added {{something}}",
         },
         array: ["a", "b", "c"],
+        arrayJoin: ["line1", "line2", "line3"],
+        arrayJoinWithInterpolation: ["you", "can", "{{myVar}}"],
+        arrayOfObjects: [{ name: "tom" }, { name: "steve" }],
       },
     },
   },
@@ -35,4 +38,19 @@ val = i18next.t("array", { returnObjects: true });
 console.log(val);
 // -> ['a', 'b', 'c']
 val.push("1");
+console.log(val);
+
+val = i18next.t("arrayJoin", { joinArrays: "+" });
+// -> "line1+line2+line3"
+console.log(val);
+
+val = i18next.t("arrayJoinWithInterpolation", {
+  myVar: "interpolate",
+  joinArrays: " ",
+});
+// -> "you can interpolate"
+console.log(val);
+
+val = i18next.t("arrayOfObjects.0.name");
+// -> "tom"
 console.log(val);
